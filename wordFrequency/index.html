@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Word Frequency</title>
+  </head>
+
+  <body>
+    <main class="container">
+      <section class="input">
+        <label for="words">Write or paste text to count words</label>
+        <textarea
+          name="words"
+          id="words"
+          cols="30"
+          rows="10"
+          maxlength="2048"
+        ></textarea>
+        <button type="button" onclick="getText()">Count</button>
+      </section>
+      <section class="results">
+        <table width="100%">
+          <caption>
+            Words frequency sorted in descending order
+          </caption>
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Frequency</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="./scripts.js"></script>
+  </body>
+</html>
