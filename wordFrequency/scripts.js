@@ -1,27 +1,32 @@
+const reg1 = /([.]\s)|(,\s)/g; // find every dot and comma followed by a whitespace
+
 function getText() {
   const text = document.querySelector("textarea").value;
-  let wordsArr = text.split(" ");
 
-  const uniqueWords = wordsArr.filter(
-    (value, index, self) => self.indexOf(value) === index
-  );
+  if (!text) {
+    alert("Input cannot be left empty");
+  } else {
+    let wordsArr = text.replace(reg1, " ").split(" ");
 
-  let occurrences = [];
-  uniqueWords.forEach(value =>
-    occurrences.push(countOccurrences(wordsArr, value))
-  );
+    const uniqueWords = wordsArr.filter(
+      (value, index, self) => self.indexOf(value) === index
+    );
 
-  let obj = [];
+    let occurrences = [];
+    uniqueWords.forEach(value =>
+      occurrences.push(countOccurrences(wordsArr, value))
+    );
 
-  for (let i = 0; i < uniqueWords.length; i++) {
-    obj.push({ word: uniqueWords[i], occurrences: occurrences[i] });
+    let obj = [];
+
+    for (let i = 0; i < uniqueWords.length; i++) {
+      obj.push({ word: uniqueWords[i], occurrences: occurrences[i] });
+    }
+
+    obj.sort((a, b) => a.occurrences - b.occurrences).reverse();
+
+    createTable(obj);
   }
-
-  obj.sort((a, b) => a.occurrences - b.occurrences).reverse();
-
-  console.log(obj);
-
-  createTable(obj);
 }
 
 function countOccurrences(array, element) {
