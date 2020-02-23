@@ -1,5 +1,6 @@
-const reg1 = /([.]\s)|(,\s)/g; // find every dot and comma followed by a whitespace
-const reg2 = /([.]$)|([!@#$%^&*()?":{}|<>])/g;
+const reg1 = /([.]\s)|(,\s)|([.]{1,})/g; // find every dot and comma followed by a whitespace
+const reg2 = /([.]$)|([!@#$%^&*()?":{}|<>–-])/g;
+const reg3 = /(\s{1,})/g;
 
 function getText() {
   const text = document.querySelector("textarea").value;
@@ -10,7 +11,11 @@ function getText() {
     let wordsArr = text
       .replace(reg1, " ")
       .replace(reg2, "")
-      .split(" ");
+      .replace(reg3, " ");
+
+    // console.log(wordsArr);
+
+    wordsArr = wordsArr.split(" ");
 
     const uniqueWords = wordsArr.filter(
       (value, index, self) => self.indexOf(value) === index
