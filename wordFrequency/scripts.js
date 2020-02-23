@@ -1,4 +1,5 @@
 const reg1 = /([.]\s)|(,\s)/g; // find every dot and comma followed by a whitespace
+const reg2 = /([.]$)|([!@#$%^&*()?":{}|<>])/g;
 
 function getText() {
   const text = document.querySelector("textarea").value;
@@ -6,7 +7,10 @@ function getText() {
   if (!text) {
     alert("Input cannot be left empty");
   } else {
-    let wordsArr = text.replace(reg1, " ").split(" ");
+    let wordsArr = text
+      .replace(reg1, " ")
+      .replace(reg2, "")
+      .split(" ");
 
     const uniqueWords = wordsArr.filter(
       (value, index, self) => self.indexOf(value) === index
