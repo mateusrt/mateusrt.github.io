@@ -1,5 +1,5 @@
 const reg1 = /([.]\s)|(,\s)|([.]{1,})/g; // find every dot and comma followed by a whitespace
-const reg2 = /([.]$)|([!@#$%^&*()?":{}|<>–-])/g;
+const reg2 = /([.]$)|([!@#$%^&*()?":{}|<>–-])|(\s$)|(^\s)/g;
 const reg3 = /(\s{1,})/g;
 
 function getText() {
@@ -9,6 +9,7 @@ function getText() {
     alert("Input cannot be left empty");
   } else {
     let wordsArr = text
+      .toLocaleLowerCase()
       .replace(reg1, " ")
       .replace(reg2, "")
       .replace(reg3, " ");
